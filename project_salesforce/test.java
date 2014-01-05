@@ -20,7 +20,6 @@ import jxl.write.biff.RowsExceededException;
 public class test {
 
 	/**
-	 * @param args
 	 * @throws IOException 
 	 * @throws MessagingException 
 	 * @throws WriteException 
@@ -35,7 +34,7 @@ public class test {
 		met.findElementby("id", "first_name", "Sending value by Id").sendKeys("bala");
 		met.findElementby("name","user[last_name]", "Send by name").sendKeys("subra");
 		met.findElementby("class","textField","Send by class").sendKeys("Rena");
-		met.findElementby("css","css=html > body > #pagewrap > #body > #content > div > div:nth-of-type(2) > div > #deorg_form > p:nth-of-type(4) > #company", "Send by css ").sendKeys("XXX");
+		met.findElementby("css","//image[type='input']","Send value by CSS path").sendKeys("XXX");
 		met.findElementby("xpath","//input[@id='username']", "xpath ").sendKeys("bala@cyon.com");
 		met.DropdownSelect(driver.findElement(By.id("job_role")),"VT", "Developer", "Selecting VT");
 		met.DropdownSelect(driver.findElement(By.id("country")),"VAL","IN", "Select by Value");
