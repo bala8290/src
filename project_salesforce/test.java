@@ -8,6 +8,7 @@ import javax.mail.MessagingException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -20,7 +21,6 @@ import jxl.write.biff.RowsExceededException;
 public class test {
 
 	/**
-	 * @param args
 	 * @throws IOException 
 	 * @throws MessagingException 
 	 * @throws WriteException 
@@ -35,13 +35,42 @@ public class test {
 		met.findElementby("id", "first_name", "Sending value by Id").sendKeys("bala");
 		met.findElementby("name","user[last_name]", "Send by name").sendKeys("subra");
 		met.findElementby("class","textField","Send by class").sendKeys("Rena");
-		met.findElementby("css","css=html > body > #pagewrap > #body > #content > div > div:nth-of-type(2) > div > #deorg_form > p:nth-of-type(4) > #company", "Send by css ").sendKeys("XXX");
+		met.findElementby("css","//image[type='input']","Send value by CSS path").sendKeys("XXX");
 		met.findElementby("xpath","//input[@id='username']", "xpath ").sendKeys("bala@cyon.com");
 		met.DropdownSelect(driver.findElement(By.id("job_role")),"VT", "Developer", "Selecting VT");
 		met.DropdownSelect(driver.findElement(By.id("country")),"VAL","IN", "Select by Value");
 		met.DropdownSelect(driver.findElement(By.id("job_role")), "INDEX", "2", "Select by index");
 		
+		WebElement element = null;
+
+		try{ 
 		
+		
+		driver.switchTo().frame(driver.findElement(By.id("desktop")));
+		System.out.println("Switching to Desktop Success");
+
+		driver.switchTo().frame(driver.findElement(By.id("app_iframe")));
+		System.out.println("Switching to app_iframe");
+
+		driver.findElement(By.id("inputUsername")).click();//this is as it was recorded by the Selenium IDE
+		System.out.println("Clicking On username");
+		driver.findElement(By.id("inputUsername")).clear();
+		System.out.println("Clicking On username");
+		driver.findElement(By.id("inputUsername")).sendKeys("admin");
+
+		driver.findElement(By.id("inputPassword")).click();
+		System.out.println("inputPassword");
+		driver.findElement(By.id("inputPassword")).clear();
+
+		driver.findElement(By.id("inputPassword")).sendKeys("123");
+
+		driver.findElement(By.id("buttonOK")).click();
+		}
+		
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 		//String Valuivere = "DM Campaign to Top Customers - Nov 12-23, 2001";
 		//System.out.println(Value.substring(0, 1).toUpperCase());
 		//Value="https://ap1.salesforce.com/003?fcf=00B90000006PuwI";
